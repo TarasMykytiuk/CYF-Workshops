@@ -19,10 +19,13 @@ export function ProfilePreview(profile, options) {
   const bio = document.createElement("p");
   bio.textContent = profile.bio;
   bio.dataset.testid = "profileBio";
-
-  preview.appendChild(picture);
-  preview.appendChild(name);
-  preview.appendChild(bio);
-
+  if (options && options.shortForm) {
+    preview.appendChild(picture);
+    preview.appendChild(name);
+  } else {
+    preview.appendChild(picture);
+    preview.appendChild(name);
+    preview.appendChild(bio);
+  }
   return preview;
 }
