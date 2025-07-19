@@ -1,5 +1,11 @@
-export function ProfilePreview(profile,shortform) {
+export function ProfilePreview(profile, options) {
   const preview = document.createElement("aside");
+  if (options && options.available === false) {
+    const unavailable = document.createElement("p");
+    unavailable.textContent = "Profile preview unavailable";
+    preview.appendChild(unavailable);
+    return preview;
+  }
 
   const picture = document.createElement("img");
   picture.src = profile.pictureSrc;
@@ -13,7 +19,7 @@ export function ProfilePreview(profile,shortform) {
   const bio = document.createElement("p");
   bio.textContent = profile.bio;
   bio.dataset.testid = "profileBio";
-  if (shortform && shortform.shortForm) {
+  if (options && options.shortForm) {
     preview.appendChild(picture);
     preview.appendChild(name);
   } else {
