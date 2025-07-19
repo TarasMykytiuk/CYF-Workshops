@@ -1,4 +1,4 @@
-export function ProfilePreview(profile) {
+export function ProfilePreview(profile,shortform) {
   const preview = document.createElement("aside");
 
   const picture = document.createElement("img");
@@ -13,10 +13,13 @@ export function ProfilePreview(profile) {
   const bio = document.createElement("p");
   bio.textContent = profile.bio;
   bio.dataset.testid = "profileBio";
-
-  preview.appendChild(picture);
-  preview.appendChild(name);
-  preview.appendChild(bio);
-
+  if (shortform && shortform.shortForm) {
+    preview.appendChild(picture);
+    preview.appendChild(name);
+  } else {
+    preview.appendChild(picture);
+    preview.appendChild(name);
+    preview.appendChild(bio);
+  }
   return preview;
 }
